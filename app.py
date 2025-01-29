@@ -6,7 +6,7 @@ from flask_caching import Cache
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask_swagger_ui import get_swaggerui_blueprint
-from config import DevelopmentConfig  # Import your configuration
+from config import DevelopmentConfig
 from config import TestingConfig
 
 from routes import productBP
@@ -15,15 +15,15 @@ from routes import orderBP
 from routes import customerBP
 
 app = Flask(__name__)
-app.config.from_object(DevelopmentConfig) # Load configuration
+app.config.from_object(DevelopmentConfig)
 
-# Initialize extensions
+
 db = SQLAlchemy(app)
 cache = Cache(app) 
 limiter = Limiter(app, key_func=get_remote_address)
 
 
-# Swagger configuration
+
 SWAGGER_URL = '/api/docs'  
 API_URL = '/static/swagger.yaml'  
 swaggerui_blueprint = get_swaggerui_blueprint(
